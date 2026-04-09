@@ -340,7 +340,7 @@ function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab,
                 {i === activeShowreel && <span className="reel-playing">▶</span>}
               </button>
             ))}
-            <div className="reel-audio"><h4>Hörprobe</h4><AudioPlayer src={VIDEOS.audio} /></div>
+            <div className="reel-audio"><h4>Hörprobe</h4><p className="reel-audio-title">Die Nibelungen · R: Julia Prechsl · 2021</p><AudioPlayer src={VIDEOS.audio} /></div>
           </div>
         </div>
       </FadeIn>
@@ -536,7 +536,7 @@ function LayoutSaas({ scrollTo, activeShowreel, setActiveShowreel, activeTab, se
         <div className="audio-card">
           <div className="audio-card-label">
             <span className="audio-card-icon">🎙</span>
-            <div><strong>Hörprobe</strong><span>Stimme & Sprechen</span></div>
+            <div><strong>Hörprobe</strong><span>Die Nibelungen · R: Julia Prechsl · 2021</span></div>
           </div>
           <div className="audio-card-player"><AudioPlayer src={VIDEOS.audio} /></div>
         </div>
@@ -715,7 +715,7 @@ function LayoutApple({ scrollTo, activeShowreel, setActiveShowreel, activeTab, s
         <div className="audio-card">
           <div className="audio-card-label">
             <span className="audio-card-icon">🎙</span>
-            <div><strong>Hörprobe</strong><span>Stimme & Sprechen</span></div>
+            <div><strong>Hörprobe</strong><span>Die Nibelungen · R: Julia Prechsl · 2021</span></div>
           </div>
           <div className="audio-card-player"><AudioPlayer src={VIDEOS.audio} /></div>
         </div>
@@ -883,7 +883,7 @@ function LayoutEditorial({ scrollTo, activeShowreel, setActiveShowreel, activeTa
         <div className="audio-card">
           <div className="audio-card-label">
             <span className="audio-card-icon">🎙</span>
-            <div><strong>Hörprobe</strong><span>Stimme & Sprechen</span></div>
+            <div><strong>Hörprobe</strong><span>Die Nibelungen · R: Julia Prechsl · 2021</span></div>
           </div>
           <div className="audio-card-player"><AudioPlayer src={VIDEOS.audio} /></div>
         </div>

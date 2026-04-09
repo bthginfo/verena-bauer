@@ -2308,7 +2308,7 @@ img { max-width: 100%; display: block; }
 /* ═══════ RESPONSIVE: ALL LAYOUTS ═══════ */
 @media (max-width: 1024px) {
   .saas-hero { grid-template-columns: 1fr; padding: 7rem 3rem 4rem; }
-  .saas-hero-img { display: none; }
+  .saas-hero-img img { max-height: 50vh; border-radius: var(--radius-card); }
   .saas-features { grid-template-columns: repeat(2, 1fr); }
   .saas-reels-grid { grid-template-columns: repeat(2, 1fr); }
   .saas-two-col { grid-template-columns: 1fr; gap: 3rem; }
@@ -2341,6 +2341,7 @@ img { max-width: 100%; display: block; }
   .saas-hero { padding: 6rem 1.5rem 3rem; }
   .saas-hero-title { font-size: clamp(2rem, 8vw, 3rem); }
   .saas-hero-sub { font-size: 0.95rem; }
+  .saas-hero-img img { max-height: 40vh; width: 100%; object-fit: cover; }
   .saas-features { grid-template-columns: 1fr; }
   .saas-reels-grid { grid-template-columns: 1fr 1fr; }
   .saas-section { padding: 4rem 1.5rem; }

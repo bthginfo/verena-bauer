@@ -35,10 +35,10 @@ const GD = (id) => `https://drive.google.com/file/d/${id}/preview`
 const VIDEOS = {
   about: GD('1HFtcqcMdDK4Lcy5YERqsTzObBx1np-Ef'),
   showreels: [
-    { title: 'Showreel 1', url: GD('11Cgt_VcCcwVYx3_TFJm-dM_9UzE-WniS') },
-    { title: 'Showreel 2', url: GD('1dkrRdOedzAeAGzuqDIIkPQVoLtkuZsnI') },
-    { title: 'Showreel 3', url: GD('1chRAKGXaJjxTNxvjeyWfbdcj3-oxOxvo') },
-    { title: 'Showreel 4', url: GD('1XbH-s3slBTefs_ZRhMkcTmDAbZjFsY8x') },
+    { title: 'BZgA – Der Hirntod in der ethischen Diskussion', url: GD('11Cgt_VcCcwVYx3_TFJm-dM_9UzE-WniS') },
+    { title: 'Die Galerie der vergessenen Berufe', url: GD('1dkrRdOedzAeAGzuqDIIkPQVoLtkuZsnI') },
+    { title: 'Les Amoures', url: GD('1chRAKGXaJjxTNxvjeyWfbdcj3-oxOxvo') },
+    { title: 'Die Überflüssigen', url: GD('1XbH-s3slBTefs_ZRhMkcTmDAbZjFsY8x') },
   ],
   audio: GD('12wfiX1kX3yLYNcvrdzYOKVf4afBsL6Iy'),
 }

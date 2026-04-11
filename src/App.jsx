@@ -322,33 +322,52 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
       </div>
       <AnimatePresence mode="wait">
         <motion.div key={activeAboutTab} className="about-tabs-content" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
-          <div className="about-tab-cards">
-            {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => {
-              // Gesang Card mit Subkategorien und Hörprobe
-              if (item.name === 'Gesang') {
+          {activeAboutTab === 'Skills' ? (
+            <>
+              <div className="about-tab-cards about-tab-cards-single">
+                {/* Gesang Card nimmt ganze Zeile */}
+                {(() => {
+                  const item = ABOUT_TABS_DATA['Skills'][0]
+                  return (
+                    <div className="about-tab-card has-preview" style={{gridColumn: '1/-1'}}>
+                      <span className="about-tab-card-label">Gesang</span>
+                      <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
+                      <ul className="about-tab-card-sub">
+                        {item.sub.map((s, j) => <li key={j}>{s}</li>)}
+                      </ul>
+                      <div className="skill-audio-row">
+                        <span className="skill-play-icon">&#9654;</span>
+                        <button className="skill-audio-btn-inline" onClick={e => { e.stopPropagation(); setSkillVideo(92); }}>Hörprobe</button>
+                      </div>
+                    </div>
+                  )
+                })()}
+              </div>
+              <div className="about-tab-cards">
+                {ABOUT_TABS_DATA['Skills'].slice(1).map((item, i) => {
+                  const ts = SKILL_VIDEO_TIMESTAMPS[item.name]
+                  return (
+                    <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i} onClick={ts != null ? () => setSkillVideo(ts) : undefined}>
+                      <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}{ts != null && <span className="skill-audio-label">Hörprobe</span>}</span>
+                      <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
+                    </div>
+                  )
+                })}
+              </div>
+            </>
+          ) : (
+            <div className="about-tab-cards">
+              {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => {
+                const ts = SKILL_VIDEO_TIMESTAMPS[item.name]
                 return (
-                  <div className="about-tab-card has-preview" key={i}>
-                    <span className="about-tab-card-label">Gesang</span>
+                  <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i} onClick={ts != null ? () => setSkillVideo(ts) : undefined}>
+                    <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}{ts != null && <span className="skill-audio-label">Hörprobe</span>}</span>
                     <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
-                    <ul className="about-tab-card-sub">
-                      {item.sub.map((s, j) => <li key={j}>{s}</li>)}
-                    </ul>
-                    <button className="skill-audio-btn" onClick={e => { e.stopPropagation(); setSkillVideo(92); }}>
-                      <span className="skill-play-icon">&#9654;</span> Hörprobe
-                    </button>
                   </div>
                 )
-              }
-              // Sonstige Cards
-              const ts = SKILL_VIDEO_TIMESTAMPS[item.name]
-              return (
-                <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i} onClick={ts != null ? () => setSkillVideo(ts) : undefined}>
-                  <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}{ts != null && <span className="skill-audio-label">Hörprobe</span>}</span>
-                  <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
-                </div>
-              )
-            })}
-          </div>
+              })}
+            </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

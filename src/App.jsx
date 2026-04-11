@@ -332,13 +332,12 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
                     <div className="about-tab-card has-preview" style={{gridColumn: '1/-1'}}>
                       <span className="about-tab-card-label">Gesang</span>
                       <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
-                      <ul className="about-tab-card-sub">
+                      <ul className="about-tab-card-sub-inline">
                         {item.sub.map((s, j) => <li key={j}>{s}</li>)}
                       </ul>
-                      <div className="skill-audio-row">
-                        <span className="skill-play-icon">&#9654;</span>
-                        <button className="skill-audio-btn-inline" onClick={e => { e.stopPropagation(); setSkillVideo(92); }}>Hörprobe</button>
-                      </div>
+                      <span className="skill-play-icon" onClick={e => { e.stopPropagation(); setSkillVideo(92); }}>
+                        &#9654;<span className="skill-audio-label">Hörprobe</span>
+                      </span>
                     </div>
                   )
                 })()}

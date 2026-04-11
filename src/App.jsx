@@ -406,7 +406,7 @@ function SkillVideoModal({ startTime, onClose }) {
     <div className="skill-video-overlay" onClick={onClose}>
       <div className="skill-video-modal" onClick={e => e.stopPropagation()}>
         <button className="skill-video-close" onClick={onClose}>&times;</button>
-        <iframe src={`https://drive.google.com/file/d/1HFtcqcMdDK4Lcy5YERqsTzObBx1np-Ef/preview?start=${startTime}`} allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" />
+        <iframe src={`https://drive.google.com/file/d/1HFtcqcMdDK4Lcy5YERqsTzObBx1np-Ef/preview#t=${startTime}`} allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" />
       </div>
     </div>
   )

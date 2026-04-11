@@ -1345,8 +1345,58 @@ img { max-width: 100%; display: block; }
 
 .about-tab-card.has-preview { cursor: pointer; transition: border-color 0.2s; }
 .about-tab-card.has-preview:hover { border-color: var(--accent, #c9a84c); }
-.skill-play-icon { margin-left: 0.4em; font-size: 0.6rem; opacity: 0.5; }
-.about-tab-card.has-preview:hover .skill-play-icon { opacity: 1; color: var(--accent, #c9a84c); }
+
+.skill-play-icon {
+  display: inline-block;
+  margin-left: 0.4em;
+  margin-right: 0.3em;
+  font-size: 1.1em;
+  vertical-align: -0.1em;
+  opacity: 0.85;
+  color: var(--accent, #c9a84c);
+  filter: drop-shadow(0 0 2px #0008);
+}
+.about-tab-card.has-preview:hover .skill-play-icon { opacity: 1; color: var(--accent, #fff); }
+.skill-audio-label {
+  margin-left: 0.3em;
+  font-size: 0.8em;
+  color: var(--accent, #c9a84c);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+.skill-audio-btn {
+  margin-top: 0.5em;
+  background: var(--accent, #c9a84c);
+  color: #181818;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.3em 1em 0.3em 0.7em;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  box-shadow: 0 2px 8px #0002;
+  transition: background 0.15s, color 0.15s;
+}
+.skill-audio-btn:hover {
+  background: #fff;
+  color: var(--accent, #c9a84c);
+}
+.about-tab-card-sub {
+  margin: 0.3em 0 0.1em 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92em;
+  opacity: 0.8;
+}
+.about-tab-card-sub li {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
 
 .skill-video-overlay {
   position: fixed; inset: 0; z-index: 9999;

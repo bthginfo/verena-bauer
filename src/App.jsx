@@ -239,7 +239,13 @@ const ABOUT_TABS_DATA = {
     ...SKILLS_DATA['Dialekte & Akzente'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
   ],
   Skills: [
-    ...SKILLS_DATA['Gesang'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
+    {
+      name: 'Gesang',
+      value: 'professionell',
+      pro: true,
+      sub: SKILLS_DATA['Gesang'].map(s => `${s.name} (${s.level})`),
+      hasPreview: true
+    },
     ...SKILLS_DATA['Tanz'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
     ...SKILLS_DATA['Instrumente'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
     ...SKILLS_DATA['Sport'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
@@ -249,9 +255,7 @@ const ABOUT_TABS_DATA = {
 const SKILL_VIDEO_TIMESTAMPS = {
   'Bairisch': 20,
   'Klavier': 92,
-  'Chanson': 92,
-  'Musical': 92,
-  'A cappella': 92,
+  'Gesang': 92,
 }
 
 /* ═══════ SHARED COMPONENTS ═══════ */
@@ -320,10 +324,26 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
         <motion.div key={activeAboutTab} className="about-tabs-content" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
           <div className="about-tab-cards">
             {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => {
+              // Gesang Card mit Subkategorien und Hörprobe
+              if (item.name === 'Gesang') {
+                return (
+                  <div className="about-tab-card has-preview" key={i}>
+                    <span className="about-tab-card-label">Gesang</span>
+                    <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
+                    <ul className="about-tab-card-sub">
+                      {item.sub.map((s, j) => <li key={j}>{s}</li>)}
+                    </ul>
+                    <button className="skill-audio-btn" onClick={e => { e.stopPropagation(); setSkillVideo(92); }}>
+                      <span className="skill-play-icon">&#9654;</span> Hörprobe
+                    </button>
+                  </div>
+                )
+              }
+              // Sonstige Cards
               const ts = SKILL_VIDEO_TIMESTAMPS[item.name]
               return (
                 <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i} onClick={ts != null ? () => setSkillVideo(ts) : undefined}>
-                  <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}</span>
+                  <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}{ts != null && <span className="skill-audio-label">Hörprobe</span>}</span>
                   <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
                 </div>
               )

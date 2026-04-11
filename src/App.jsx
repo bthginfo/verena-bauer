@@ -346,8 +346,15 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
                 {ABOUT_TABS_DATA['Skills'].slice(1).map((item, i) => {
                   const ts = SKILL_VIDEO_TIMESTAMPS[item.name]
                   return (
-                    <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i} onClick={ts != null ? () => setSkillVideo(ts) : undefined}>
-                      <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}{ts != null && <span className="skill-audio-label">Hörprobe</span>}</span>
+                    <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i}>
+                      <span className="about-tab-card-label">
+                        {item.name}
+                        {ts != null && (
+                          <span className="skill-play-icon" onClick={e => { e.stopPropagation(); setSkillVideo(ts); }}>
+                            &#9654;<span className="skill-audio-label">Hörprobe</span>
+                          </span>
+                        )}
+                      </span>
                       <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
                     </div>
                   )
@@ -359,8 +366,15 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
               {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => {
                 const ts = SKILL_VIDEO_TIMESTAMPS[item.name]
                 return (
-                  <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i} onClick={ts != null ? () => setSkillVideo(ts) : undefined}>
-                    <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}{ts != null && <span className="skill-audio-label">Hörprobe</span>}</span>
+                  <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i}>
+                    <span className="about-tab-card-label">
+                      {item.name}
+                      {ts != null && (
+                        <span className="skill-play-icon" onClick={e => { e.stopPropagation(); setSkillVideo(ts); }}>
+                          &#9654;<span className="skill-audio-label">Hörprobe</span>
+                        </span>
+                      )}
+                    </span>
                     <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
                   </div>
                 )

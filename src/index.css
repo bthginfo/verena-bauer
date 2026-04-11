@@ -1314,21 +1314,32 @@ img { max-width: 100%; display: block; }
   border-color: rgba(255,255,255,0.5);
 }
 .about-tabs-content {
+}
+.about-tab-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.6rem;
+}
+.about-tab-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.75rem;
+  padding: 0.8rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
-.about-tab-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.9rem;
+.about-tab-card-label {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
-.about-tab-row span { opacity: 0.7; }
-.about-tab-row strong { font-weight: 600; }
-.about-tab-row strong.pro { color: var(--accent, #c9a84c); }
+.about-tab-card strong {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.about-tab-card strong.pro { color: var(--accent, #c9a84c); }
 
 /* ═══════ GALLERY TOGGLE ═══════ */
 .gallery-toggle {

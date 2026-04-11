@@ -103,11 +103,11 @@ const PORTRAIT_IMAGES = [
 ]
 
 const ABOUT_SLIDER_IMAGES = [
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00062.jpg?tr=w-500',
   'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(5%20von%207).jpg',
   'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(1%20von%201).jpg',
   'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(6%20von%207).jpg',
   'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(4%20von%207).jpg',
-  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(2%20von%207).jpg',
 ]
 
 const HERO_IMAGES = [
@@ -313,12 +313,14 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab }) {
       </div>
       <AnimatePresence mode="wait">
         <motion.div key={activeAboutTab} className="about-tabs-content" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
-          {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => (
-            <div className="about-tab-row" key={i}>
-              <span>{item.name}</span>
-              <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
-            </div>
-          ))}
+          <div className="about-tab-cards">
+            {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => (
+              <div className="about-tab-card" key={i}>
+                <span className="about-tab-card-label">{item.name}</span>
+                <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </AnimatePresence>
     </div>
@@ -344,7 +346,7 @@ function VideoPlayer({ src, poster }) {
           <div className="video-play-btn">▶</div>
         </div>
       ) : (
-        <iframe src={src + (src.includes('?') ? '&' : '?') + 'autoplay=1'} allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" />
+        <iframe src={src} allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" loading="lazy" referrerPolicy="no-referrer" />
       )}
     </div>
   )

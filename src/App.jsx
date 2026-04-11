@@ -335,7 +335,11 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
                       <ul className="about-tab-card-sub-inline">
                         {item.sub.map((s, j) => <li key={j}>{s}</li>)}
                       </ul>
-                      <span className="skill-play-icon" onClick={e => { e.stopPropagation(); setSkillVideo(92); }}>
+                      <span className="skill-play-icon" onClick={e => {
+                        e.stopPropagation();
+                        setSkillVideo(null);
+                        setTimeout(() => setSkillVideo(92), 10);
+                      }}>
                         &#9654;<span className="skill-audio-label">Hörprobe</span>
                       </span>
                     </div>
@@ -370,7 +374,11 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
                     <span className="about-tab-card-label">
                       {item.name}
                       {ts != null && (
-                        <span className="skill-play-icon" onClick={e => { e.stopPropagation(); setSkillVideo(ts); }}>
+                        <span className="skill-play-icon" onClick={e => {
+                          e.stopPropagation();
+                          setSkillVideo(null);
+                          setTimeout(() => setSkillVideo(ts), 10);
+                        }}>
                           &#9654;<span className="skill-audio-label">Hörprobe</span>
                         </span>
                       )}
@@ -398,7 +406,7 @@ function SkillVideoModal({ startTime, onClose }) {
     <div className="skill-video-overlay" onClick={onClose}>
       <div className="skill-video-modal" onClick={e => e.stopPropagation()}>
         <button className="skill-video-close" onClick={onClose}>&times;</button>
-        <iframe src={`https://drive.google.com/file/d/1HFtcqcMdDK4Lcy5YERqsTzObBx1np-Ef/preview#t=${startTime}`} allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" />
+        <iframe src={`https://drive.google.com/file/d/1HFtcqcMdDK4Lcy5YERqsTzObBx1np-Ef/preview?start=${startTime}`} allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" />
       </div>
     </div>
   )

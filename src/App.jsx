@@ -4,22 +4,110 @@ import { useInView } from 'react-intersection-observer'
 
 const IK = 'https://ik.imagekit.io/iu4cuvwazh/VM/'
 
-const THEMES = {
-  default: 'Dark Gold',
-  saas: 'Modern SaaS',
-  apple: 'Apple Minimal',
-  editorial: 'Magazin Editorial',
+const thumb = (url, w = 600) => {
+  if (url.includes('?tr=')) return url.replace(/tr=w-\d+/, `tr=w-${w}`)
+  return url + `?tr=w-${w}`
 }
 
-const IMAGES = [
-  'image00002.jpg','image00020.jpg','image00026.jpg','image00030.jpg',
-  'image00031.jpg','image00034.jpg','image00042.jpg','image00059.jpg',
-  'image00005.jpg','image00012.jpg','image00015.jpg','image00024.jpg',
-  'image00032.jpg','image00044.jpg','image00048.jpg','image00055.jpg',
-  'image00062.jpg','image00063.jpg','image00067.jpg','image00068.jpg',
-  'image00072.jpg','image00073.jpg','image00075.jpg','image00083.jpg',
-  'image00053.jpg','image00065.jpg','image00099.jpg','image00085.jpg',
-  'image00022.jpg','image00037.jpg','image00088.jpg',
+
+
+const THEATER_IMAGES = [
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG9205.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00030.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG3772.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00002.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG3930.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00044.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG4426.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00026.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG8686.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00034.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG8988.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00042.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG9004.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00020.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG3759.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00031.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/4d75b74e-3f00-44e1-9a28-e738860107e0.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00024.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/721ac6bd-1543-41df-ba45-750ec288cbb6.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00032.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/laborantin_hp1_c_Kaufhold_0585.JPG',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00048.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/laborantin_hp1_c_Kaufhold_0790.JPG',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00083.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/laborantin_hp2_c_Kaufhold_1335.JPG',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00053.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG9037.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00085.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG9073.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00022.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG9277.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00037.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG3764.jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG3777.jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG3923.jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG3939.jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG4436.jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG8950.jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG8992%20Kopie.jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/_SIG9369.jpg',
+]
+
+const PORTRAIT_IMAGES = [
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(5%20von%207).jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00088.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/5AE1FBBF-D92C-46F4-A09F-95547A0D50C4_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(2%20von%207)-bw.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00059.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/8BD63264-ED80-45E6-85CE-49BC14EDC06B_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(6%20von%207)-bw.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00005.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/40E84991-8F10-4479-8C08-5507EF78849B_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(1%20von%201).jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00012.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/67AF27FD-2031-4C10-95AF-340FCA186980_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(1%20von%207)-bw.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00015.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/319B2625-888A-43C2-9E92-DA8AECD5976C_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(4%20von%207).jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00055.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/792FC173-D91A-433E-B4CB-E47DADB2C0A9_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(4%20von%207)-bw.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00062.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/7500F3AF-DBCB-46DA-8D5B-FAFB7B76562A_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(5%20von%207)-bw.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00063.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/A59763F5-F71C-4E69-8DD8-1CC0E577429A_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(6%20von%207).jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00067.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/B095475C-DC03-496F-8864-09325979D739_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(1%20von%201)-bw.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00068.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/C8CCE9E3-3ACC-41B8-AC87-DE3DA7DC3961_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(1%20von%207).jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00072.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/D6BC86AF-0754-41E7-A5B1-0AAD416002AD_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(2%20von%207).jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00073.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/DEFCD033-CB65-44CF-A54A-F7CD5804AE25_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(3%20von%207)-bw.jpg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00075.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/EBEE5FFF-0C7D-454B-9FF7-9FD935CDC95F_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/4FE110DA-68E1-4A22-B3C4-C40E7746788C_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00065.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/EF494CDF-DFD0-4AD1-928C-6333A6C84F17_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu69j6qea/vm/5C187945-4874-4263-ACDE-3C24F08A9C09_1_105_c.jpeg',
+  'https://ik.imagekit.io/iu4cuvwazh/VM/image00099.jpg?tr=w-1400',
+  'https://ik.imagekit.io/iu69j6qea/vm/8FBF69D7-9D63-449B-9291-2E4796C155DF_1_105_c.jpeg',
+]
+
+const ABOUT_SLIDER_IMAGES = [
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(5%20von%207).jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(1%20von%201).jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(6%20von%207).jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(4%20von%207).jpg',
+  'https://ik.imagekit.io/iu69j6qea/vm/Verena-Maria-Bauer(c)SaskiaAllers%20(2%20von%207).jpg',
 ]
 
 const HERO_IMAGES = [
@@ -140,6 +228,27 @@ const SKILLS_DATA = {
   ],
 }
 
+const ABOUT_TABS_DATA = {
+  Fakten: [
+    { name: 'Spielalter', value: '28 – 37' },
+    { name: 'Größe', value: '176 cm' },
+    { name: 'Stimmlage', value: 'Mezzosopran' },
+    { name: 'Wohnort', value: 'Osnabrück' },
+    { name: 'Haarfarbe', value: 'Braun, mittel' },
+    { name: 'Augenfarbe', value: 'Dunkelbraun' },
+  ],
+  Sprachen: [
+    ...SKILLS_DATA['Sprachen'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
+    ...SKILLS_DATA['Dialekte & Akzente'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
+  ],
+  Skills: [
+    ...SKILLS_DATA['Gesang'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
+    ...SKILLS_DATA['Tanz'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
+    ...SKILLS_DATA['Instrumente'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
+    ...SKILLS_DATA['Sport'].map(s => ({ name: s.name, value: s.level, pro: s.pro })),
+  ],
+}
+
 /* ═══════ SHARED COMPONENTS ═══════ */
 
 function FadeIn({ children, className, delay = 0 }) {
@@ -170,6 +279,61 @@ function HeroSlideshow() {
   )
 }
 
+function AboutSlider() {
+  const [idx, setIdx] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i + 1) % ABOUT_SLIDER_IMAGES.length), 4000)
+    return () => clearInterval(t)
+  }, [])
+  return (
+    <div className="about-slider">
+      <AnimatePresence mode="wait">
+        <motion.img key={idx} src={thumb(ABOUT_SLIDER_IMAGES[idx], 700)} alt="Verena Maria Bauer"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }} loading="lazy" />
+      </AnimatePresence>
+      <div className="about-slider-dots">
+        {ABOUT_SLIDER_IMAGES.map((_, i) => (
+          <button key={i} className={`about-slider-dot ${i === idx ? 'active' : ''}`} onClick={() => setIdx(i)} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function AboutTabs({ activeAboutTab, setActiveAboutTab }) {
+  return (
+    <div className="about-tabs-section">
+      <div className="about-tabs-nav">
+        {Object.keys(ABOUT_TABS_DATA).map(tab => (
+          <button key={tab} className={`about-tab-btn ${activeAboutTab === tab ? 'active' : ''}`} onClick={() => setActiveAboutTab(tab)}>
+            {tab}
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.div key={activeAboutTab} className="about-tabs-content" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
+          {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => (
+            <div className="about-tab-row" key={i}>
+              <span>{item.name}</span>
+              <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
+            </div>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  )
+}
+
+function GalleryToggle({ galleryTab, setGalleryTab }) {
+  return (
+    <div className="gallery-toggle">
+      <button className={`gallery-toggle-btn ${galleryTab === 'theater' ? 'active' : ''}`} onClick={() => setGalleryTab('theater')}>Theater &amp; Bühne</button>
+      <button className={`gallery-toggle-btn ${galleryTab === 'portraits' ? 'active' : ''}`} onClick={() => setGalleryTab('portraits')}>Portraits</button>
+    </div>
+  )
+}
+
 function VideoPlayer({ src, poster }) {
   const [playing, setPlaying] = useState(false)
   return (
@@ -194,18 +358,18 @@ function AudioPlayer({ src }) {
   )
 }
 
-function Lightbox({ lightbox, setLightbox }) {
+function Lightbox({ lightbox, setLightbox, images }) {
   return (
     <AnimatePresence>
       {lightbox !== null && (
         <motion.div className="lightbox" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setLightbox(null)}>
           <button className="lightbox-close" onClick={() => setLightbox(null)}>✕</button>
-          <button className="lightbox-nav prev" onClick={e => { e.stopPropagation(); setLightbox(i => (i - 1 + IMAGES.length) % IMAGES.length) }}>‹</button>
-          <motion.img key={lightbox} src={`${IK}${IMAGES[lightbox]}?tr=w-1400`} alt=""
+          <button className="lightbox-nav prev" onClick={e => { e.stopPropagation(); setLightbox(i => (i - 1 + images.length) % images.length) }}>‹</button>
+          <motion.img key={lightbox} src={thumb(images[lightbox], 1400)} alt=""
             initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.92, opacity: 0 }}
             transition={{ duration: 0.35 }} onClick={e => e.stopPropagation()} />
-          <button className="lightbox-nav next" onClick={e => { e.stopPropagation(); setLightbox(i => (i + 1) % IMAGES.length) }}>›</button>
-          <div className="lightbox-counter">{lightbox + 1} / {IMAGES.length}</div>
+          <button className="lightbox-nav next" onClick={e => { e.stopPropagation(); setLightbox(i => (i + 1) % images.length) }}>›</button>
+          <div className="lightbox-counter">{lightbox + 1} / {images.length}</div>
         </motion.div>
       )}
     </AnimatePresence>
@@ -260,11 +424,12 @@ function DatenschutzPage({ goHome }) {
 
 /* ═══════ LAYOUT 1: DEFAULT (Dark Gold) ═══════ */
 
-function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox }) {
+function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox, galleryTab, setGalleryTab, activeAboutTab, setActiveAboutTab }) {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const currentImages = galleryTab === 'theater' ? THEATER_IMAGES : PORTRAIT_IMAGES
 
   return (<>
     <section className="hero" ref={heroRef}>
@@ -290,28 +455,19 @@ function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab,
     <section id="about" className="section">
       <div className="about-layout">
         <FadeIn className="about-media">
-          <div className="about-image-stack">
-            <img src={`${IK}image00062.jpg?tr=w-500`} alt="Verena Maria Bauer" className="about-img-main" />
-          </div>
+          <AboutSlider />
         </FadeIn>
         <FadeIn className="about-content" delay={0.15}>
-          <span className="label">Über mich</span>
+          <span className="label">About me</span>
           <h2 className="heading-lg">Zwischen den Welten<br /><em>zuhause</em></h2>
           <p className="body-text">Geboren 1991 in Ingolstadt, ausgebildet an der Musik und Kunst Privatuniversität der Stadt Wien. Über renommierte Häuser wie das Theater Regensburg und das Saarländische Staatstheater hat Verena sich als vielseitige Bühnenkünstlerin etabliert.</p>
           <p className="body-text">Von Shakespeares Ophelia über Maria Stuart bis hin zu zeitgenössischen Stoffen – ihre Mezzosopran-Stimme, professionelles Musical-Können und tänzerische Vielseitigkeit machen sie zur idealen Besetzung für spartenübergreifende Produktionen.</p>
-          <div className="about-details">
-            <div className="detail"><span>Spielalter</span><strong>28 – 37</strong></div>
-            <div className="detail"><span>Größe</span><strong>176 cm</strong></div>
-            <div className="detail"><span>Stimmlage</span><strong>Mezzosopran</strong></div>
-            <div className="detail"><span>Wohnort</span><strong>Osnabrück</strong></div>
-            <div className="detail"><span>Haarfarbe</span><strong>Braun, mittel</strong></div>
-            <div className="detail"><span>Augenfarbe</span><strong>Dunkelbraun</strong></div>
-          </div>
+          <AboutTabs activeAboutTab={activeAboutTab} setActiveAboutTab={setActiveAboutTab} />
         </FadeIn>
       </div>
       <FadeIn delay={0.1}>
         <div className="about-video-section">
-          <h3 className="heading-sm">Video-Visitenkarte</h3>
+          <h3 className="heading-sm">About me</h3>
           <VideoPlayer src={VIDEOS.about} poster={`${IK}iconframe.jpg`} />
         </div>
       </FadeIn>
@@ -348,15 +504,18 @@ function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab,
 
     <section id="gallery" className="section">
       <FadeIn><span className="label">Portfolio</span><h2 className="heading-lg">Galerie</h2></FadeIn>
+      <FadeIn delay={0.05}><GalleryToggle galleryTab={galleryTab} setGalleryTab={setGalleryTab} /></FadeIn>
       <FadeIn delay={0.1}>
-        <div className="gallery-masonry">
-          {IMAGES.map((img, i) => (
-            <motion.div key={i} className="gallery-item" onClick={() => setLightbox(i)} whileHover={{ scale: 1.03 }} transition={{ duration: 0.35 }}>
-              <img src={`${IK}${img}?tr=w-600`} alt={`Verena Maria Bauer – ${i + 1}`} loading="lazy" />
-              <div className="gallery-overlay" />
-            </motion.div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div key={galleryTab} className="gallery-masonry" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+            {currentImages.map((img, i) => (
+              <motion.div key={i} className="gallery-item" onClick={() => setLightbox(i)} whileHover={{ scale: 1.03 }} transition={{ duration: 0.35 }}>
+                <img src={thumb(img)} alt={`Verena Maria Bauer – ${i + 1}`} loading="lazy" />
+                <div className="gallery-overlay" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </FadeIn>
     </section>
 
@@ -396,19 +555,6 @@ function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab,
       </FadeIn>
     </section>
 
-    <section id="skills" className="section">
-      <FadeIn><span className="label">Fähigkeiten</span><h2 className="heading-lg">Skills & Talente</h2></FadeIn>
-      <div className="skills-grid">
-        {Object.entries(SKILLS_DATA).map(([cat, items], ci) => (
-          <FadeIn key={cat} delay={ci * 0.04}>
-            <div className="skill-card"><h3>{cat}</h3>
-              {items.map((s, i) => (<div className="skill-row" key={i}><span>{s.name}</span><span className={`skill-badge ${s.pro ? 'pro' : ''}`}>{s.level}</span></div>))}
-            </div>
-          </FadeIn>
-        ))}
-      </div>
-    </section>
-
     <section id="contact" className="section section-dark contact-section">
       <FadeIn>
         <div className="contact-inner">
@@ -425,546 +571,6 @@ function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab,
   </>)
 }
 
-/* ═══════ LAYOUT 2: MODERN SAAS ═══════ */
-
-function LayoutSaas({ scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox }) {
-  return (<>
-    {/* Split hero: text left, image right */}
-    <section className="saas-hero" id="top">
-      <div className="saas-hero-content">
-        <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
-          <div className="saas-badge">Schauspielerin · Sängerin · Performerin</div>
-          <h1 className="saas-hero-title">Verena Maria<br />Bauer</h1>
-          <p className="saas-hero-sub">Wandelbar. Leidenschaftlich. Auf jeder Bühne zuhause – von Shakespeare bis Musical, von Film bis Hörspiel.</p>
-          <div className="saas-hero-btns">
-            <a href="#reels" className="saas-btn-primary" onClick={e => { e.preventDefault(); scrollTo('reels') }}>Showreels ansehen →</a>
-            <a href="#contact" className="saas-btn-ghost" onClick={e => { e.preventDefault(); scrollTo('contact') }}>Kontakt aufnehmen</a>
-          </div>
-          <div className="saas-hero-stats">
-            <div><strong>10+</strong><span>Jahre Bühne</span></div>
-            <div><strong>30+</strong><span>Rollen</span></div>
-            <div><strong>3</strong><span>Awards</span></div>
-          </div>
-        </motion.div>
-      </div>
-      <motion.div className="saas-hero-img" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.3 }}>
-        <img src={`${IK}image00062.jpg?tr=w-700`} alt="Verena Maria Bauer" />
-      </motion.div>
-    </section>
-
-    {/* Trusted by / Feature strip */}
-    <section className="saas-strip">
-      <div className="saas-strip-inner">
-        {['Theater Regensburg', 'Saarl. Staatstheater', 'Theater Osnabrück', 'TAG Wien', 'MUK Wien'].map(t => (
-          <span key={t}>{t}</span>
-        ))}
-      </div>
-    </section>
-
-    {/* About as feature cards */}
-    <section id="about" className="saas-section">
-      <FadeIn>
-        <div className="saas-section-header">
-          <span className="saas-overline">Über mich</span>
-          <h2 className="saas-h2">Alles aus einer Hand.</h2>
-          <p className="saas-p-lg">Schauspiel, Gesang, Tanz und Moderation – vielseitig ausgebildet und bühnenerprobt seit über einem Jahrzehnt.</p>
-        </div>
-      </FadeIn>
-      <div className="saas-features">
-        {[
-          { icon: '🎭', title: 'Schauspiel', desc: 'Klassik bis Zeitgenössisch. Ophelia, Maria Stuart, Brunhild – Hauptrollen an renommierten Häusern.' },
-          { icon: '🎤', title: 'Gesang', desc: 'Mezzosopran. Musical, Chanson, A cappella – professionell ausgebildet und bühnensicher.' },
-          { icon: '💃', title: 'Tanz', desc: 'Jazzdance, Modern, Choreografie – vielseitig einsetzbar für jede Produktion.' },
-          { icon: '🎬', title: 'Film & Synchron', desc: 'Kurzfilm, Musikvideo, Bildungsfilm – vor der Kamera ebenso zuhause wie auf der Bühne.' },
-          { icon: '🎙️', title: 'Sprache & Stimme', desc: 'Deutsch/Englisch fließend, Bairisch, Britisch, Amerikanisch – Werbung und Hörspiel.' },
-          { icon: '🏆', title: 'Ausgezeichnet', desc: 'Förderpreis Theaterfreunde, Science+Imagination Award, Outstanding German Contribution.' },
-        ].map((f, i) => (
-          <FadeIn key={i} delay={i * 0.05}>
-            <div className="saas-feature-card">
-              <div className="saas-feature-icon">{f.icon}</div>
-              <h3>{f.title}</h3>
-              <p>{f.desc}</p>
-            </div>
-          </FadeIn>
-        ))}
-      </div>
-    </section>
-
-    {/* Video-Visitenkarte as big centered section */}
-    <section className="saas-section saas-section-dark">
-      <FadeIn>
-        <div className="saas-section-header">
-          <span className="saas-overline">Video-Visitenkarte</span>
-          <h2 className="saas-h2">Sehen ist glauben.</h2>
-        </div>
-        <div className="saas-video-center">
-          <VideoPlayer src={VIDEOS.about} poster={`${IK}iconframe.jpg`} />
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Showreels as horizontal cards */}
-    <section id="reels" className="saas-section">
-      <FadeIn>
-        <div className="saas-section-header">
-          <span className="saas-overline">Showreels</span>
-          <h2 className="saas-h2">Meine besten Momente.</h2>
-        </div>
-      </FadeIn>
-      <div className="saas-reels-grid">
-        {VIDEOS.showreels.map((reel, i) => (
-          <FadeIn key={i} delay={i * 0.08}>
-            <div className={`saas-reel-card ${i === activeShowreel ? 'active' : ''}`} onClick={() => setActiveShowreel(i)}>
-              <img src={SHOWREEL_POSTERS[i]} alt={reel.title} />
-              <div className="saas-reel-card-info">
-                <span className="saas-reel-num">{String(i + 1).padStart(2, '0')}</span>
-                <span>{reel.title}</span>
-              </div>
-            </div>
-          </FadeIn>
-        ))}
-      </div>
-      <div className="mobile-reel-nav">
-        {VIDEOS.showreels.map((r, i) => (
-          <button key={i} className={`mobile-reel-btn ${i === activeShowreel ? 'active' : ''}`} onClick={() => setActiveShowreel(i)}>{r.title}</button>
-        ))}
-      </div>
-      <FadeIn delay={0.2}>
-        <div className="saas-video-center" style={{ marginTop: '2rem' }}>
-          <VideoPlayer key={activeShowreel} src={VIDEOS.showreels[activeShowreel].url} poster={SHOWREEL_POSTERS[activeShowreel]} />
-        </div>
-        <div className="audio-card">
-          <div className="audio-card-label">
-            <span className="audio-card-icon">🎙</span>
-            <div><strong>Hörprobe</strong><span>Die Nibelungen · R: Julia Prechsl · 2021</span></div>
-          </div>
-          <div className="audio-card-player"><AudioPlayer src={VIDEOS.audio} /></div>
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Gallery as responsive grid */}
-    <section id="gallery" className="saas-section saas-section-dark">
-      <FadeIn>
-        <div className="saas-section-header">
-          <span className="saas-overline">Galerie</span>
-          <h2 className="saas-h2">Impressionen.</h2>
-        </div>
-      </FadeIn>
-      <div className="saas-gallery-grid">
-        {IMAGES.map((img, i) => (
-          <motion.div key={i} className="saas-gallery-item" onClick={() => setLightbox(i)} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-            <img src={`${IK}${img}?tr=w-500`} alt={`Verena – ${i + 1}`} loading="lazy" />
-          </motion.div>
-        ))}
-      </div>
-    </section>
-
-    {/* Steckbrief as two-column */}
-    <section className="saas-section">
-      <div className="saas-two-col">
-        <FadeIn>
-          <div>
-            <span className="saas-overline">Steckbrief</span>
-            <h2 className="saas-h2">Auf einen Blick.</h2>
-            <div className="saas-info-grid">
-              {[['Spielalter', '28 – 37'], ['Größe', '176 cm'], ['Stimmlage', 'Mezzosopran'], ['Wohnort', 'Osnabrück'], ['Haarfarbe', 'Braun, mittel'], ['Augenfarbe', 'Dunkelbraun']].map(([l, v]) => (
-                <div key={l} className="saas-info-item"><span>{l}</span><strong>{v}</strong></div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <div>
-            <span className="saas-overline">Skills</span>
-            <h2 className="saas-h2">Vielseitig.</h2>
-            <div className="saas-skills-tags">
-              {Object.entries(SKILLS_DATA).flatMap(([, items]) => items).map((s, i) => (
-                <span key={i} className={`saas-tag ${s.pro ? 'pro' : ''}`}>{s.name}</span>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-
-    {/* Career as timeline */}
-    <section id="career" className="saas-section saas-section-dark">
-      <FadeIn><div className="saas-section-header"><span className="saas-overline">Karriere</span><h2 className="saas-h2">Filmografie & Theater</h2></div></FadeIn>
-      <div className="saas-tabs">
-        {Object.keys(FILMOGRAPHY).map(tab => (
-          <button key={tab} className={`saas-tab ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>
-            {tab} <span>({FILMOGRAPHY[tab].length})</span>
-          </button>
-        ))}
-      </div>
-      <div className="saas-career-list">
-        {FILMOGRAPHY[activeTab].map((item, i) => (
-          <motion.div className="saas-career-item" key={`${activeTab}-${i}`} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}>
-            <span className="saas-career-year">{item.year}</span>
-            <div className="saas-career-info">
-              <strong>{item.title}</strong>
-              <p>{item.details}</p>
-            </div>
-            <span className="saas-career-type">{item.type}</span>
-          </motion.div>
-        ))}
-      </div>
-      <FadeIn delay={0.1}>
-        <div className="saas-awards-row">
-          <h3 className="saas-h3">Auszeichnungen</h3>
-          <div className="saas-awards-cards">
-            {AWARDS.map((a, i) => (
-              <div key={i} className="saas-award-card">
-                <span className="saas-award-year">{a.year}</span>
-                <strong>{a.title}</strong>
-                {a.details && <p>{a.details}</p>}
-              </div>
-            ))}
-          </div>
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* CTA */}
-    <section id="contact" className="saas-cta" id="contact">
-      <FadeIn>
-        <h2 className="saas-cta-title">Bereit für die nächste Rolle?</h2>
-        <p className="saas-cta-sub">Für Casting-Anfragen, Kooperationen oder weitere Informationen.</p>
-        <div className="saas-hero-btns" style={{ justifyContent: 'center' }}>
-          <a href="https://www.schauspielervideos.de/fullprofile/schauspieler-verena-maria-bauer.html" target="_blank" rel="noopener noreferrer" className="saas-btn-primary">Profil ansehen →</a>
-          <a href="mailto:kontakt@verenamariabauer.de" className="saas-btn-ghost">E-Mail schreiben</a>
-        </div>
-      </FadeIn>
-    </section>
-  </>)
-}
-
-/* ═══════ LAYOUT 3: APPLE MINIMAL ═══════ */
-
-function LayoutApple({ scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox }) {
-  const heroRef = useRef(null)
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
-
-  return (<>
-    {/* Immersive fullscreen hero with scale effect */}
-    <section className="apple-hero" ref={heroRef}>
-      <motion.img className="apple-hero-bg" src={`${IK}image00088.jpg?tr=w-1800,fo-face`} alt="" style={{ scale: heroScale }} />
-      <div className="apple-hero-overlay" />
-      <motion.div className="apple-hero-text" style={{ opacity: heroOpacity }}
-        initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 0.5 }}>
-        <h1>Verena Maria Bauer</h1>
-        <p>Schauspielerin. Sängerin. Performerin.</p>
-      </motion.div>
-    </section>
-
-    {/* Intro - big text + portrait side by side */}
-    <section className="apple-intro" id="about">
-      <FadeIn className="apple-intro-text">
-        <p className="apple-big-text">
-          Wandelbar. Leidenschaftlich.<br />
-          Auf jeder Bühne zuhause.
-        </p>
-        <p className="apple-body">Geboren 1991 in Ingolstadt. Ausgebildet an der MUK Wien. Über 30 Hauptrollen an renommierten Häusern – von Shakespeares Ophelia über Maria Stuart bis hin zu zeitgenössischen Stoffen.</p>
-        <div className="apple-details-inline">
-          {[['Spielalter', '28–37'], ['Größe', '176 cm'], ['Stimme', 'Mezzosopran'], ['Standort', 'Osnabrück']].map(([l, v]) => (
-            <div key={l}><span>{l}</span><strong>{v}</strong></div>
-          ))}
-        </div>
-      </FadeIn>
-      <FadeIn className="apple-intro-img" delay={0.15}>
-        <img src={`${IK}image00062.jpg?tr=w-700`} alt="Verena Maria Bauer" />
-      </FadeIn>
-    </section>
-
-    {/* Stats strip */}
-    <section className="apple-stats">
-      {[['10+', 'Jahre Bühne'], ['30+', 'Theaterrollen'], ['3', 'Awards'], ['4', 'Sprachen']].map(([num, label]) => (
-        <FadeIn key={label}>
-          <div className="apple-stat"><span className="apple-stat-num">{num}</span><span className="apple-stat-label">{label}</span></div>
-        </FadeIn>
-      ))}
-    </section>
-
-    {/* Video-Visitenkarte */}
-    <section className="apple-video-section">
-      <FadeIn>
-        <p className="apple-section-label">Video-Visitenkarte</p>
-        <div className="apple-video-wide">
-          <VideoPlayer src={VIDEOS.about} poster={`${IK}iconframe.jpg`} />
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Showreels */}
-    <section id="reels" className="apple-video-section">
-      <FadeIn>
-        <p className="apple-section-label">Showreels</p>
-        <div className="apple-reel-nav">
-          {VIDEOS.showreels.map((r, i) => (
-            <button key={i} className={`apple-reel-btn ${i === activeShowreel ? 'active' : ''}`} onClick={() => setActiveShowreel(i)}>
-              {r.title}
-            </button>
-          ))}
-        </div>
-        <div className="apple-video-wide">
-          <VideoPlayer key={activeShowreel} src={VIDEOS.showreels[activeShowreel].url} poster={SHOWREEL_POSTERS[activeShowreel]} />
-        </div>
-        <div className="audio-card">
-          <div className="audio-card-label">
-            <span className="audio-card-icon">🎙</span>
-            <div><strong>Hörprobe</strong><span>Die Nibelungen · R: Julia Prechsl · 2021</span></div>
-          </div>
-          <div className="audio-card-player"><AudioPlayer src={VIDEOS.audio} /></div>
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Gallery – compact 3-column masonry */}
-    <section id="gallery" className="apple-gallery-section">
-      <FadeIn><p className="apple-section-label">Galerie</p></FadeIn>
-      <div className="apple-gallery-grid">
-        {IMAGES.map((img, i) => (
-          <div key={i} className="apple-gallery-item" onClick={() => setLightbox(i)}>
-            <img src={`${IK}${img}?tr=w-500`} alt="" loading="lazy" />
-          </div>
-        ))}
-      </div>
-    </section>
-
-    {/* Career */}
-    <section id="career" className="apple-career-section">
-      <FadeIn>
-        <p className="apple-big-text" style={{ marginBottom: '3rem' }}>
-          Über <em>30 Rollen</em> auf den<br />größten Bühnen des Landes.
-        </p>
-      </FadeIn>
-      <div className="apple-tabs">
-        {Object.keys(FILMOGRAPHY).map(tab => (
-          <button key={tab} className={`apple-tab ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>{tab}</button>
-        ))}
-      </div>
-      <div className="apple-film-list">
-        {FILMOGRAPHY[activeTab].map((item, i) => (
-          <motion.div className="apple-film-row" key={`${activeTab}-${i}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03 }}>
-            <span className="apple-film-year">{item.year}</span>
-            <div className="apple-film-main">
-              <span className="apple-film-title">{item.title}</span>
-              <span className="apple-film-details">{item.details}</span>
-            </div>
-            <span className="apple-film-type">{item.type}</span>
-          </motion.div>
-        ))}
-      </div>
-      <FadeIn delay={0.1}>
-        <div className="apple-awards">
-          <p className="apple-section-label" style={{ marginTop: '4rem' }}>Auszeichnungen</p>
-          {AWARDS.map((a, i) => (
-            <div key={i} className="apple-award-row">
-              <span>{a.year}</span><strong>{a.title}</strong>{a.details && <span className="apple-award-detail">{a.details}</span>}
-            </div>
-          ))}
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Skills */}
-    <section id="skills" className="apple-skills-section">
-      <FadeIn>
-        <p className="apple-section-label">Fähigkeiten</p>
-        <div className="apple-skills-grid">
-          {Object.entries(SKILLS_DATA).map(([cat, items]) => (
-            <div key={cat} className="apple-skill-group">
-              <h3 className="apple-skill-cat">{cat}</h3>
-              <div className="apple-skill-tags">
-                {items.map((s, i) => <span key={i} className={s.pro ? 'pro' : ''}>{s.name}</span>)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Contact */}
-    <section id="contact" className="apple-cta">
-      <FadeIn>
-        <h2>Let's work together.</h2>
-        <div className="apple-cta-links">
-          <a href="https://www.schauspielervideos.de/fullprofile/schauspieler-verena-maria-bauer.html" target="_blank" rel="noopener noreferrer">Profil ansehen →</a>
-          <a href="mailto:kontakt@verenamariabauer.de">E-Mail schreiben →</a>
-        </div>
-      </FadeIn>
-    </section>
-  </>)
-}
-
-/* ═══════ LAYOUT 4: MAGAZIN EDITORIAL ═══════ */
-
-function LayoutEditorial({ scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox }) {
-  const parallaxRef = useRef(null)
-  const { scrollYProgress: pProgress } = useScroll({ target: parallaxRef, offset: ['start end', 'end start'] })
-  const parallaxY = useTransform(pProgress, [0, 1], ['-15%', '15%'])
-
-  return (<>
-    {/* Full-bleed hero with overlay text bottom-left */}
-    <section className="ed-hero">
-      <img src={`${IK}image00088.jpg?tr=w-1800,fo-face`} alt="" className="ed-hero-img" />
-      <div className="ed-hero-overlay" />
-      <motion.div className="ed-hero-text" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-        <span className="ed-issue">Portfolio 2026</span>
-        <h1>Verena<br />Maria<br />Bauer</h1>
-        <p>Schauspielerin · Sängerin · Performerin</p>
-      </motion.div>
-    </section>
-
-    {/* Two-column intro: large pullquote + body */}
-    <section id="about" className="ed-section">
-      <div className="ed-two-col-intro">
-        <FadeIn>
-          <div className="ed-pullquote">
-            <span className="ed-dropcap">V</span>on Shakespeares Ophelia über Maria Stuart bis hin zu zeitgenössischen Stoffen – Verena Maria Bauer ist eine der vielseitigsten Bühnenkünstlerinnen ihrer Generation.
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <div className="ed-intro-body">
-            <p>Geboren 1991 in Ingolstadt, führte sie der Weg über die Musik und Kunst Privatuniversität der Stadt Wien auf die großen Bühnen. Am Theater Regensburg und dem Saarländischen Staatstheater spielte sie über 30 Hauptrollen.</p>
-            <p>Ihr Repertoire umfasst Schauspiel, Musical, Gesang und Tanz. Mit Mezzosopran, professionellem Musical-Können und tänzerischer Vielseitigkeit ist sie die ideale Besetzung für spartenübergreifende Produktionen.</p>
-            <div className="ed-meta-row">
-              {[['Spielalter', '28–37'], ['Größe', '176 cm'], ['Stimme', 'Mezzosopran']].map(([l, v]) => (
-                <div key={l}><span className="ed-meta-label">{l}</span><span className="ed-meta-value">{v}</span></div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-
-    {/* Parallax image break */}
-    <div className="ed-parallax-wrap" ref={parallaxRef}>
-      <motion.img src={`${IK}image00059.jpg?tr=w-1600`} alt="Verena Maria Bauer" style={{ y: parallaxY }} className="ed-parallax-img" />
-    </div>
-
-    {/* Video */}
-    <section className="ed-section">
-      <FadeIn>
-        <div className="ed-section-title"><span className="ed-rule" /><span>Video-Visitenkarte</span><span className="ed-rule" /></div>
-        <div className="ed-video-wrap">
-          <VideoPlayer src={VIDEOS.about} poster={`${IK}iconframe.jpg`} />
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Showreels */}
-    <section id="reels" className="ed-section ed-section-alt">
-      <FadeIn>
-        <div className="ed-section-title"><span className="ed-rule" /><span>Showreels</span><span className="ed-rule" /></div>
-      </FadeIn>
-      <div className="ed-reels-grid">
-        {VIDEOS.showreels.map((reel, i) => (
-          <FadeIn key={i} delay={i * 0.06}>
-            <div className={`ed-reel-card ${i === activeShowreel ? 'active' : ''}`} onClick={() => setActiveShowreel(i)}>
-              <img src={SHOWREEL_POSTERS[i]} alt={reel.title} />
-              <span>{reel.title}</span>
-            </div>
-          </FadeIn>
-        ))}
-      </div>
-      <div className="mobile-reel-nav">
-        {VIDEOS.showreels.map((r, i) => (
-          <button key={i} className={`mobile-reel-btn ${i === activeShowreel ? 'active' : ''}`} onClick={() => setActiveShowreel(i)}>{r.title}</button>
-        ))}
-      </div>
-      <FadeIn delay={0.2}>
-        <div className="ed-video-wrap">
-          <VideoPlayer key={activeShowreel} src={VIDEOS.showreels[activeShowreel].url} poster={SHOWREEL_POSTERS[activeShowreel]} />
-        </div>
-        <div className="audio-card">
-          <div className="audio-card-label">
-            <span className="audio-card-icon">🎙</span>
-            <div><strong>Hörprobe</strong><span>Die Nibelungen · R: Julia Prechsl · 2021</span></div>
-          </div>
-          <div className="audio-card-player"><AudioPlayer src={VIDEOS.audio} /></div>
-        </div>
-      </FadeIn>
-    </section>
-
-    {/* Gallery as magazine spread: big + small mixed */}
-    <section id="gallery" className="ed-section">
-      <FadeIn><div className="ed-section-title"><span className="ed-rule" /><span>Galerie</span><span className="ed-rule" /></div></FadeIn>
-      <div className="ed-gallery-spread">
-        {IMAGES.slice(0, 3).map((img, i) => (
-          <FadeIn key={i}><div className="ed-gallery-large" onClick={() => setLightbox(i)}><img src={`${IK}${img}?tr=w-1000`} alt="" loading="lazy" /></div></FadeIn>
-        ))}
-        <div className="ed-gallery-grid">
-          {IMAGES.slice(3).map((img, i) => (
-            <div key={i} className="ed-gallery-sm" onClick={() => setLightbox(i + 3)}>
-              <img src={`${IK}${img}?tr=w-400`} alt="" loading="lazy" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* Career: sidebar year nav + content */}
-    <section id="career" className="ed-section ed-section-alt">
-      <FadeIn><div className="ed-section-title"><span className="ed-rule" /><span>Karriere</span><span className="ed-rule" /></div></FadeIn>
-      <div className="ed-career-tabs">
-        {Object.keys(FILMOGRAPHY).map(tab => (
-          <button key={tab} className={`ed-tab ${activeTab === tab ? 'active' : ''}`} onClick={() => setActiveTab(tab)}>{tab}</button>
-        ))}
-      </div>
-      <div className="ed-career-list">
-        {FILMOGRAPHY[activeTab].map((item, i) => (
-          <motion.div className="ed-career-item" key={`${activeTab}-${i}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03 }}>
-            <span className="ed-career-year">{item.year}</span>
-            <div>
-              <strong>{item.title}</strong>
-              <span className="ed-career-details">{item.details}</span>
-            </div>
-            <span className="ed-career-type">{item.type}</span>
-          </motion.div>
-        ))}
-      </div>
-      <div className="ed-awards">
-        <h3>Auszeichnungen</h3>
-        {AWARDS.map((a, i) => (
-          <div key={i} className="ed-award"><span>{a.year}</span><strong>{a.title}</strong>{a.details && <p>{a.details}</p>}</div>
-        ))}
-      </div>
-    </section>
-
-    {/* Skills as 3-column magazine layout */}
-    <section id="skills" className="ed-section">
-      <FadeIn><div className="ed-section-title"><span className="ed-rule" /><span>Skills & Talente</span><span className="ed-rule" /></div></FadeIn>
-      <div className="ed-skills-cols">
-        {Object.entries(SKILLS_DATA).map(([cat, items]) => (
-          <div key={cat} className="ed-skill-col">
-            <h4>{cat}</h4>
-            {items.map((s, i) => (
-              <div key={i} className="ed-skill-row"><span>{s.name}</span><em>{s.level}</em></div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </section>
-
-    {/* Contact */}
-    <section id="contact" className="ed-section ed-section-alt ed-contact">
-      <FadeIn>
-        <div className="ed-section-title"><span className="ed-rule" /><span>Kontakt</span><span className="ed-rule" /></div>
-        <p className="ed-contact-text">Für Casting-Anfragen, Kooperationen oder weitere Informationen.</p>
-        <div className="ed-contact-links">
-          <a href="https://www.schauspielervideos.de/fullprofile/schauspieler-verena-maria-bauer.html" target="_blank" rel="noopener noreferrer">Schauspielervideos.de →</a>
-          <a href="mailto:kontakt@verenamariabauer.de">kontakt@verenamariabauer.de →</a>
-        </div>
-      </FadeIn>
-    </section>
-  </>)
-}
-
-
 /* ═══════ MAIN APP ═══════ */
 
 function App() {
@@ -973,9 +579,12 @@ function App() {
   const [activeTab, setActiveTab] = useState('Theater')
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeShowreel, setActiveShowreel] = useState(0)
-  const [theme, setTheme] = useState('default')
   const [page, setPage] = useState('home')
   const [cookieAccepted, setCookieAccepted] = useState(() => localStorage.getItem('cookies_accepted') === 'true')
+  const [galleryTab, setGalleryTab] = useState('theater')
+  const [activeAboutTab, setActiveAboutTab] = useState('Fakten')
+
+  const currentGalleryImages = galleryTab === 'theater' ? THEATER_IMAGES : PORTRAIT_IMAGES
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -992,16 +601,17 @@ function App() {
     if (lightbox === null) return
     const onKey = e => {
       if (e.key === 'Escape') setLightbox(null)
-      if (e.key === 'ArrowRight') setLightbox(i => (i + 1) % IMAGES.length)
-      if (e.key === 'ArrowLeft') setLightbox(i => (i - 1 + IMAGES.length) % IMAGES.length)
+      if (e.key === 'ArrowRight') setLightbox(i => (i + 1) % currentGalleryImages.length)
+      if (e.key === 'ArrowLeft') setLightbox(i => (i - 1 + currentGalleryImages.length) % currentGalleryImages.length)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [lightbox])
+  }, [lightbox, currentGalleryImages])
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [theme])
+    setLightbox(null)
+  }, [galleryTab])
+
 
   const scrollTo = useCallback((id) => {
     setMenuOpen(false)
@@ -1012,8 +622,8 @@ function App() {
   const goHome = useCallback(() => { setPage('home'); window.scrollTo({ top: 0, behavior: 'smooth' }) }, [])
   const acceptCookies = useCallback(() => { localStorage.setItem('cookies_accepted', 'true'); setCookieAccepted(true) }, [])
 
-  const navItems = [['about', 'Über mich'], ['reels', 'Showreels'], ['gallery', 'Galerie'], ['career', 'Karriere'], ['skills', 'Skills'], ['contact', 'Kontakt']]
-  const layoutProps = { scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox }
+  const navItems = [['about', 'About me'], ['reels', 'Showreels'], ['gallery', 'Galerie'], ['career', 'Karriere'], ['contact', 'Kontakt']]
+  const layoutProps = { scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox, galleryTab, setGalleryTab, activeAboutTab, setActiveAboutTab }
 
   return (
     <>
@@ -1025,9 +635,6 @@ function App() {
               <li key={id}><a href={`#${id}`} onClick={e => { e.preventDefault(); scrollTo(id) }}>{label}</a></li>
             ))}
           </ul>
-          <select className="theme-select" value={theme} onChange={e => setTheme(e.target.value)}>
-            {Object.entries(THEMES).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
-          </select>
         </div>
         <div className={`nav-hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)}><span /><span /><span /></div>
       </nav>
@@ -1038,24 +645,16 @@ function App() {
             {navItems.map(([id, label], i) => (
               <motion.a key={id} href={`#${id}`} onClick={e => { e.preventDefault(); scrollTo(id) }} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 + 0.1 }}>{label}</motion.a>
             ))}
-            <select className="theme-select mobile" value={theme} onChange={e => setTheme(e.target.value)}>
-              {Object.entries(THEMES).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
-            </select>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {page === 'home' && (<>
-        {theme === 'default' && <LayoutDefault {...layoutProps} />}
-        {theme === 'saas' && <LayoutSaas {...layoutProps} />}
-        {theme === 'apple' && <LayoutApple {...layoutProps} />}
-        {theme === 'editorial' && <LayoutEditorial {...layoutProps} />}
-      </>)}
+      {page === 'home' && <LayoutDefault {...layoutProps} />}
 
       {page === 'impressum' && <ImpressumPage goHome={goHome} />}
       {page === 'datenschutz' && <DatenschutzPage goHome={goHome} />}
 
-      <Lightbox lightbox={lightbox} setLightbox={setLightbox} />
+      <Lightbox lightbox={lightbox} setLightbox={setLightbox} images={currentGalleryImages} />
 
       <footer className="footer">
         <p>© {new Date().getFullYear()} Verena Maria Bauer · <a href="#" onClick={e => { e.preventDefault(); setPage('impressum'); window.scrollTo(0, 0) }}>Impressum</a> · <a href="#" onClick={e => { e.preventDefault(); setPage('datenschutz'); window.scrollTo(0, 0) }}>Datenschutz</a></p>

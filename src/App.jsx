@@ -246,6 +246,14 @@ const ABOUT_TABS_DATA = {
   ],
 }
 
+const SKILL_VIDEO_TIMESTAMPS = {
+  'Bairisch': 20,
+  'Klavier': 92,
+  'Chanson': 92,
+  'Musical': 92,
+  'A cappella': 92,
+}
+
 /* ═══════ SHARED COMPONENTS ═══════ */
 
 function FadeIn({ children, className, delay = 0 }) {
@@ -298,7 +306,7 @@ function AboutSlider() {
   )
 }
 
-function AboutTabs({ activeAboutTab, setActiveAboutTab }) {
+function AboutTabs({ activeAboutTab, setActiveAboutTab, setSkillVideo }) {
   return (
     <div className="about-tabs-section">
       <div className="about-tabs-nav">
@@ -311,15 +319,35 @@ function AboutTabs({ activeAboutTab, setActiveAboutTab }) {
       <AnimatePresence mode="wait">
         <motion.div key={activeAboutTab} className="about-tabs-content" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
           <div className="about-tab-cards">
-            {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => (
-              <div className="about-tab-card" key={i}>
-                <span className="about-tab-card-label">{item.name}</span>
-                <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
-              </div>
-            ))}
+            {ABOUT_TABS_DATA[activeAboutTab].map((item, i) => {
+              const ts = SKILL_VIDEO_TIMESTAMPS[item.name]
+              return (
+                <div className={`about-tab-card${ts != null ? ' has-preview' : ''}`} key={i} onClick={ts != null ? () => setSkillVideo(ts) : undefined}>
+                  <span className="about-tab-card-label">{item.name}{ts != null && <span className="skill-play-icon">&#9654;</span>}</span>
+                  <strong className={item.pro ? 'pro' : ''}>{item.value}</strong>
+                </div>
+              )
+            })}
           </div>
         </motion.div>
       </AnimatePresence>
+    </div>
+  )
+}
+
+function SkillVideoModal({ startTime, onClose }) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+  }, [onClose])
+  return (
+    <div className="skill-video-overlay" onClick={onClose}>
+      <div className="skill-video-modal" onClick={e => e.stopPropagation()}>
+        <button className="skill-video-close" onClick={onClose}>&times;</button>
+        <iframe src={`https://drive.google.com/file/d/1HFtcqcMdDK4Lcy5YERqsTzObBx1np-Ef/preview#t=${startTime}`} allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" />
+      </div>
     </div>
   )
 }
@@ -423,7 +451,7 @@ function DatenschutzPage({ goHome }) {
 
 /* ═══════ LAYOUT 1: DEFAULT (Dark Gold) ═══════ */
 
-function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox, galleryTab, setGalleryTab, activeAboutTab, setActiveAboutTab }) {
+function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox, galleryTab, setGalleryTab, activeAboutTab, setActiveAboutTab, setSkillVideo }) {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
@@ -461,7 +489,7 @@ function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab,
           <h2 className="heading-lg">Zwischen den Welten<br /><em>zuhause</em></h2>
           <p className="body-text">Geboren 1991 in Ingolstadt, ausgebildet an der Musik und Kunst Privatuniversität der Stadt Wien. Über renommierte Häuser wie das Theater Regensburg und das Saarländische Staatstheater hat Verena sich als vielseitige Bühnenkünstlerin etabliert.</p>
           <p className="body-text">Von Shakespeares Ophelia über Maria Stuart bis hin zu zeitgenössischen Stoffen – ihre Mezzosopran-Stimme, professionelles Musical-Können und tänzerische Vielseitigkeit machen sie zur idealen Besetzung für spartenübergreifende Produktionen.</p>
-          <AboutTabs activeAboutTab={activeAboutTab} setActiveAboutTab={setActiveAboutTab} />
+          <AboutTabs activeAboutTab={activeAboutTab} setActiveAboutTab={setActiveAboutTab} setSkillVideo={setSkillVideo} />
         </FadeIn>
       </div>
       <FadeIn delay={0.1}>
@@ -582,6 +610,7 @@ function App() {
   const [cookieAccepted, setCookieAccepted] = useState(() => localStorage.getItem('cookies_accepted') === 'true')
   const [galleryTab, setGalleryTab] = useState('theater')
   const [activeAboutTab, setActiveAboutTab] = useState('Fakten')
+  const [skillVideo, setSkillVideo] = useState(null)
 
   const currentGalleryImages = galleryTab === 'theater' ? THEATER_IMAGES : PORTRAIT_IMAGES
 
@@ -622,7 +651,7 @@ function App() {
   const acceptCookies = useCallback(() => { localStorage.setItem('cookies_accepted', 'true'); setCookieAccepted(true) }, [])
 
   const navItems = [['about', 'About me'], ['reels', 'Showreels'], ['gallery', 'Galerie'], ['career', 'Karriere'], ['contact', 'Kontakt']]
-  const layoutProps = { scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox, galleryTab, setGalleryTab, activeAboutTab, setActiveAboutTab }
+  const layoutProps = { scrollTo, activeShowreel, setActiveShowreel, activeTab, setActiveTab, setLightbox, galleryTab, setGalleryTab, activeAboutTab, setActiveAboutTab, setSkillVideo }
 
   return (
     <>
@@ -654,6 +683,8 @@ function App() {
       {page === 'datenschutz' && <DatenschutzPage goHome={goHome} />}
 
       <Lightbox lightbox={lightbox} setLightbox={setLightbox} images={currentGalleryImages} />
+
+      {skillVideo !== null && <SkillVideoModal startTime={skillVideo} onClose={() => setSkillVideo(null)} />}
 
       <footer className="footer">
         <p>© {new Date().getFullYear()} Verena Maria Bauer · <a href="#" onClick={e => { e.preventDefault(); setPage('impressum'); window.scrollTo(0, 0) }}>Impressum</a> · <a href="#" onClick={e => { e.preventDefault(); setPage('datenschutz'); window.scrollTo(0, 0) }}>Datenschutz</a></p>

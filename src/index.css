@@ -1439,8 +1439,37 @@ img { max-width: 100%; display: block; }
   list-style: none;
   font-size: 1em;
 }
+.skill-video-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.skill-video-modal {
+  position: relative;
+  width: min(860px, 92vw);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  cursor: default;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+}
+
+.skill-video-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
 .skill-video-close {
-  position: absolute; top: -2rem; right: 0;
+  position: absolute; top: -2.4rem; right: 0;
   background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; opacity: 0.7;
 }
 .skill-video-close:hover { opacity: 1; }

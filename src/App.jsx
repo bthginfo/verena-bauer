@@ -146,6 +146,7 @@ const FILMOGRAPHY = {
     { year: '2015', title: 'Wer Wir Sind', details: 'als: Lisa, R: Raphael Niederhauser', type: 'Kurzfilm' },
   ],
   Theater: [
+    { year: '2026', title: 'Wie die Sterne Fallen', details: 'HR, als Maggie, R: Christian Schlüter', type: 'Theater Osnabrück' },
     { year: '2025', title: 'Wie es euch gefällt', details: 'NR, als: Silvius, R: Christian Schlüter', type: 'Theater Osnabrück' },
     { year: '2024–25', title: 'Von Fischen und Frauen', details: 'HR, als: Anglerin 1, R: Theresa Thomasberger', type: 'Saarl. Staatstheater' },
     { year: '2025', title: 'Tod eines Handlungsreisenden', details: 'NR, als: The Woman, R: Christoph Mehler', type: 'Saarl. Staatstheater' },

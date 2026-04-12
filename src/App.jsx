@@ -653,9 +653,15 @@ function LayoutDefault({ scrollTo, activeShowreel, setActiveShowreel, activeTab,
             <a href="https://www.schauspielervideos.de/fullprofile/schauspieler-verena-maria-bauer.html" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Profil auf Schauspielervideos.de</a>
             <a href="mailto:verena.maria.bauer@web.de" className="btn btn-outline">E-Mail schreiben</a>
           </div>
-          <div className="zav-section" style={{marginTop: '2rem', textAlign: 'center'}}>
-            <span style={{display: 'block', fontSize: '1rem', marginBottom: '0.5rem'}}>Vertreten durch ZAV Künstlervermittlung</span>
-            <img src="/assets/ZAV-logo_web.jpg" alt="ZAV Künstlervermittlung Logo" style={{height: '40px', width: 'auto', opacity: 0.8}} />
+          <div className="zav-section" style={{
+            marginTop: '2rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '1.2rem'
+          }}>
+            <img src="/assets/ZAV-logo_web.jpg" alt="ZAV Künstlervermittlung Logo" style={{height: '40px', width: 'auto', opacity: 0.8, display: 'block'}} />
+            <span style={{fontSize: '1rem'}}>Vertreten durch ZAV Künstlervermittlung</span>
           </div>
         </div>
       </FadeIn>
